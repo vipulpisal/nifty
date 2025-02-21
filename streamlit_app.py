@@ -26,6 +26,6 @@ df['Volatility'] = df['Close'].pct_change().rolling(window=14).std()
 
 # Drop the rows with NaN values (due to rolling calculations)
 df = df.dropna()
-
+df
 # Check the updated dataframe
-print(df.head())
+#print(df.head())
