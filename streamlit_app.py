@@ -36,7 +36,7 @@ df['Volatility'] = df['Close'].pct_change().rolling(window=14).std()
 df = df.dropna()
 
 # Display the processed data (Optional)
-st.write(f"Data after feature calculations: {df.head()}")  # Display processed data
+st.write(f"Data after feature calculations: {df.tail()}")  # Display the last rows
 
 # Step 10: Prepare the data for training the model
 X = df[['Prev_Range', 'SMA_5', 'SMA_20', 'Volatility']]  # Features
@@ -60,3 +60,6 @@ st.write(f"Predicted Range for the Next Day: {predicted_range[0]}")
 y_pred = model.predict(X_test)
 mae = mean_absolute_error(y_test, y_pred)
 st.write(f"Mean Absolute Error (MAE) on test data: {mae}")
+
+# Check if the dates are sorted in ascending order
+st.write(f"Is the data sorted by Date in ascending order? {df['Date'].is_monotonic_increasing}")
