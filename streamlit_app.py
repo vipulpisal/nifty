@@ -45,7 +45,8 @@ df = df.dropna()
 
 # Display the updated DataFrame in a table format (after feature engineering)
 st.write(f"Data after feature calculations:")
-st.dataframe(df)  # This will show the updated dataframe with features like 'Range', 'Prev_Range', etc.
+st.dataframe(df, height=600)
+#st.dataframe(df)  # This will show the updated dataframe with features like 'Range', 'Prev_Range', etc.
 
 ###################
 # Step 11: Prepare the data for training the model
