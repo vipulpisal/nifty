@@ -1,5 +1,5 @@
 import streamlit as st
 
-st.title('🎈 App Name')
+st.title('🎈 Nifty Range Prediction ')
 
-st.write('Hello world!')
+st.write('this data is based on ML prediction')
