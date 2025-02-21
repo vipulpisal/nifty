@@ -3,8 +3,21 @@ import pandas as pd
 st.title('🎈 Nifty Range Prediction ')
 
 st.write('this data is based on ML prediction')
-
+# Step 1: Load the CSV Data
 df = pd.read_csv('https://raw.githubusercontent.com/vipulpisal/csv-files/refs/heads/main/NIFTY%2050_Historical_PR_01012025to21022025.csv')
+
+# Step 2: Convert 'Date' column to datetime format
+df['Date'] = pd.to_datetime(df['Date'], format='%d-%b-%y')
+
+# Step 3: Sort the Data by Date in ascending order
+df = df.sort_values(by='Date', ascending=True)
+
+# Display the sorted data (Optional)
+st.write(df.head())
+
+
+
+# df = pd.read_csv('https://raw.githubusercontent.com/vipulpisal/csv-files/refs/heads/main/NIFTY%2050_Historical_PR_01012025to21022025.csv')
 # Convert Date column to datetime format
 df['Date'] = pd.to_datetime(df['Date'])
 
