@@ -4,11 +4,12 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 
+# Title and description
 st.title('🎈 Nifty Range Prediction')
+st.write('This model predicts the Nifty 50 range based on historical data and ML prediction.')
 
-st.write('This data is based on ML prediction')
+# Step 1: Load the CSV Data (Allow users to upload CSV)
 
-# Step 1: Load the CSV Data
 df = pd.read_csv('https://raw.githubusercontent.com/vipulpisal/csv-files/refs/heads/main/NIFTY%2050_Historical_PR_01012025to21022025.csv')
 
 # Step 2: Convert 'Date' column to datetime format (Ensuring correct date format)
@@ -74,14 +75,30 @@ predicted_high = model_high.predict(latest_data)
 predicted_low = model_low.predict(latest_data)
 
 # Step 13: Display the predicted High and Low for tomorrow
-st.write(f"Predicted High for the Next Day: {predicted_high[0]}")
-st.write(f"Predicted Low for the Next Day: {predicted_low[0]}")
+st.write(f"Predicted High for the Next Day: {predicted_high[0]:.2f}")
+st.write(f"Predicted Low for the Next Day: {predicted_low[0]:.2f}")
 
 # Step 14: Display Model Evaluation (Optional)
 y_pred_high = model_high.predict(X_test_high)
 mae_high = mean_absolute_error(y_test_high, y_pred_high)
-st.write(f"Mean Absolute Error (MAE) for High predictions: {mae_high}")
+st.write(f"Mean Absolute Error (MAE) for High predictions: {mae_high:.2f}")
 
 y_pred_low = model_low.predict(X_test_low)
 mae_low = mean_absolute_error(y_test_low, y_pred_low)
-st.write(f"Mean Absolute Error (MAE) for Low predictions: {mae_low}")
+st.write(f"Mean Absolute Error (MAE) for Low predictions: {mae_low:.2f}")
+
+# Additional visualizations (Optional)
+import matplotlib.pyplot as plt
+
+# Plot feature importance from RandomForest models
+fig, ax = plt.subplots(1, 2, figsize=(14, 6))
+
+# Feature Importance for High prediction
+ax[0].barh(X.columns, model_high.feature_importances_)
+ax[0].set_title('Feature Importance (High)')
+
+# Feature Importance for Low prediction
+ax[1].barh(X.columns, model_low.feature_importances_)
+ax[1].set_title('Feature Importance (Low)')
+
+st.pyplot(fig)
