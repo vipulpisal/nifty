@@ -36,7 +36,7 @@ df['Volatility'] = df['Close'].pct_change().rolling(window=14).std()
 df = df.dropna()
 
 # Display the processed data (Optional)
-st.write(f"Data after feature calculations: {df.tail()}")  # Display the last rows
+st.write(f"Data after feature calculations: {df()}")  # Display the last rows
 
 # Step 10: Prepare the data for training the model
 X = df[['Prev_Range', 'SMA_5', 'SMA_20', 'Volatility']]  # Features
